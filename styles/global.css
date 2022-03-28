@@ -1,0 +1,229 @@
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+@font-face { font-family: Archive; src: url('../public/fonts/Archive/Archive.otf'); } 
+@font-face { font-family: Exodus; src: url('../public/fonts/Exodus/fonts/Exodus-PersonalUse-Striped.otf'); } 
+
+.a {
+    /* $primary-color: #ba4a5c;
+    $secondary-color: #0ea29f;
+    $tertiary-color: #b6c6c7;
+    $quaternary-color: #040404;
+    $quinary-color: #651011;
+    $senary-color: #086766;
+    $septenary-color: #2f0a0a;
+    $octonary-color: #0b3c44;
+    $nonary-color: #1c7c84; */
+    color: #ba4a5c;
+    color: #0ea29f;
+    color: #b6c6c7;
+    color: #040404;
+    color: #651011;
+    color: #086766;
+    color: #2f0a0a;
+    color: #0b3c44;
+    color: #1c7c84;
+}
+
+.body {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+}
+/* HEADER------------------------------------------------------------------- */
+.header {
+  background-color: #040404;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  width: 65vw;
+  max-width: 65vw;
+  margin: auto;
+  text-transform: uppercase;
+  font-family: Archive, sans-serif;
+}
+
+.header__title {
+  font-size: 3em;
+  /* font-weight: bold; */
+  width: 100%;
+  text-align: center;
+  margin: 1rem auto 0;
+  color: #651011;
+  text-shadow: 1px 1px 1px #b6c6c7;
+  font-family: Archive, sans-serif;
+  /* font-family: Exodus, sans-serif; */
+}
+
+.header__subtitle {
+  font-size: 2em;
+  font-weight: bold;
+  width: 100%;
+  margin: 0 auto 1rem;
+  color: #b6c6c7;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header__nav__list {
+  color: #1c7c84;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 50vw;
+  margin: auto;
+  padding: 1rem auto;
+  border-top: 1px solid #ba4a5c;
+  border-bottom: 1px solid #ba4a5c;
+  background-color: rgb(4, 4, 4,0.5);
+}
+
+.header__nav__list-item {
+  margin: 0.5rem;
+}
+
+.header__nav__list-link {
+  margin: 1rem;
+  color: #1c7c84;
+  transition: 0.5s;
+}
+
+.header__nav__list-link:hover {
+  color: #ba4a5c;
+}
+
+
+@media (min-width: 500px) {  
+}
+
+
+@media (min-width: 710px) {  
+  .header__nav__list {
+      flex-direction: row;
+      justify-content: space-evenly;
+  }
+  
+  .header__nav__list-item {
+      margin: 1rem 0.5rem;
+  }
+  .header__title {
+      font-size: 4em;
+  }
+
+  .header__subtitle {
+      font-size: 2.5em;
+  }
+}
+
+
+@media (min-width: 900px) {  
+  .header__title {
+      font-size: 5em;
+  }
+
+  .header__subtitle {
+      font-size: 3em;
+  }
+
+}
+
+@media (min-width: 1100px) {
+  .header__title {
+      font-size: 6em;
+  }
+
+  .header__subtitle {
+      font-size: 3.5em;
+  }
+
+}
+
+@media (min-width: 1500px) {
+  .header__title {
+      font-size: 8em;
+  }
+
+  .header__subtitle {
+      font-size: 4em;
+  }
+
+}
+
+/* MAIN------------------------------------------------------------------- */
+.main {
+  background-image: url("../public/images/accueil.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  width: 100%;
+}
+
+@media (min-width: 1100px) {
+  .main {
+      background-color: #040404;
+      background-size: contain;
+      background-position: center;
+  }
+
+}
+
+
+/* FOOTER------------------------------------------------------------------- */
+.footer {
+  width: 100vw;
+  height: 10vh;
+  background-color: #040404;
+  color: #2f0a0a;
+}
+
+.footer__nav {
+  height: 100%;
+  max-width: 50vw;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__nav-element {
+  /* width: 30%; */
+}
+
+.footer__nav-form {
+  display: flex;
+}
+
+.footer__nav-form input{
+  background-color: #040404;
+  border: 2px solid #2f0a0a;
+  color: #b6c6c7;
+  height: 1.5rem;
+}
+
+.footer__nav-form input:focus-visible{
+  border: 1px solid #1c7c84;
+  /* outline: 1px solid #1c7c84; */
+  outline: 0;
+}
+
+.footer__nav-form button{
+  background-color: #2f0a0a;
+  color: #b6c6c7;
+  border: 0;
+  margin-left: 0.1rem;
+  padding: 0 1rem;
+  height: 1.5rem;
+}
+
+.footer__nav-form button:focus{
+  background-color: #1c7c84;
+  color: #000;
+}

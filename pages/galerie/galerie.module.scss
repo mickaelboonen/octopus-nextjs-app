@@ -1,0 +1,90 @@
+.galerie {
+    height: 100%;
+    overflow: auto;
+    margin-top: 10vh;
+    width: 50%;
+    margin: auto;
+    font-family: Archive, sans-serif;
+
+    &__tabs {
+      display: flex;
+      color: #b6c6c7 ;
+    }
+
+    &__titles {
+
+      &__main {
+        color: #ba4a5c ;
+        text-align: center;
+        font-size: 6em;
+        margin: 1rem auto;
+        font-family: inherit;
+      }
+    }
+
+    
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto;
+  
+    &__photo {
+      flex-grow: 1;
+      width: 15rem;
+      height: 15rem;
+      background-size: cover;
+      background-position: center; 
+      transition: 0.5s;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+  
+      &:last-child {
+        margin-right: 0;
+      }
+      
+      &:nth-of-type(3n+3) {
+        margin-right: 0;
+      }
+      
+      &:hover {
+        flex-grow: 3;
+      }
+
+      &:hover .galerie__images__photo__credit {
+        opacity: 1;
+      }
+
+      &__credit {
+        position: absolute;
+        bottom: 0;
+        height: 40%;
+        width: 100%;
+        background: rgb(26,26,26);
+        background: linear-gradient(180deg, rgba(26,26,26,0) 0%, rgba(4,4,4,1) 100%);
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        transition: 0.5s;
+      }
+
+    }
+  }
+}
+
+.tab {
+  text-align: center;
+  font-size: 2em;
+  padding: 0.5rem 0;
+  transition: 0.5s;
+  width: 100%;
+  cursor: pointer;
+
+  &__active {
+    border-radius: 15px 15px 0 0;
+    background-color: #d73a3ab2;
+  }
+}

@@ -1,0 +1,144 @@
+.agenda {
+  height: 100%;
+  margin-top: 10vh;
+  width: 90%;
+  margin: auto;
+  font-family: Archive, sans-serif;
+  padding-bottom: 2rem;
+
+  &__dates {
+    margin: auto;
+    margin-bottom: 2rem;
+
+    &__buttons {
+
+      display: flex;
+      justify-content: center;
+
+      & button {
+          background-color: #0ea29f;
+          margin-right: 0.5rem;
+          padding: 0.5rem;
+          border: 0;
+
+          &:hover {
+            background-color: #ba4a5c;
+          }
+      }
+    }
+  }
+
+  &__data {
+      color: #b6c6c7;
+
+      &__title {
+        font-family: Archive, sans-serif;
+        text-align: center;
+        font-size: 1.5em;
+    }
+  }
+
+}
+
+.spectacleDate {
+    border-bottom: 1px solid #b6c6c7;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-family: Archive, sans-serif;
+    font-size: 0.9em;
+
+    &:last-child {
+      // padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    
+    &:last-child {
+      border: 0;
+    }
+
+    &__currentDate {
+      margin: 0.5rem 0;
+      font-size: 1em;
+    }
+
+    &__link {
+      padding-right: 0.5rem;
+    }
+
+    &__show {
+      color: #ba4a5c;
+    }
+
+    &__place {
+      padding-left: 0.5rem;
+      color: #0ea29f;
+    }
+
+    &__description {
+      font-family: Arial, Helvetica, sans-serif;
+      font-style: italic;
+      padding: 0.5rem 0;
+      color: inherit;
+      width: 100%;
+      font-size: 0.8em;
+
+      & a {
+          color: #b6c6c7;
+      }
+    }
+}
+
+.agenda__titles-subtitle {
+    color: #b6c6c7 ;
+    text-align: center;
+    font-size: 2em;
+    font-family: Archive, sans-serif;
+    width: 50%;
+    margin: 0 auto 1rem;
+    padding: 0 0 0.5rem;
+    
+}
+
+@media (min-width: 500px) {
+  .agenda {
+    width: 80%;
+  } 
+} 
+
+@media (min-width: 600px) {
+  .agenda {
+    width: 70%;
+  } 
+} 
+
+@media (min-width: 700px) {
+  .agenda {
+    width: 60%;
+  } 
+} 
+
+@media (min-width: 800px) {  
+  .agenda {
+    width: 50%;
+
+    &__data {
+        &__title {
+          font-size: 2em;
+      }
+    }
+  }
+
+  .spectacleDate {
+    font-size: 1em;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+
+    &__currentDate {
+      font-size: 1.3em;
+    }
+
+    &__description {
+      font-size: 1em;
+    }
+  }
+}
