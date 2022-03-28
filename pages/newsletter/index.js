@@ -7,15 +7,15 @@ export default function Newsletter() {
   const {
     newsletter,
   } = styles;
-  const { state } = useAppStatecontext()
-  console.log(state);
+  // const { state } = useAppStatecontext()
+  // console.log(state);
   return (
     <Layout>
       <Head>
         <title>S'abonner à la Newsletter</title>
       </Head>
       <div className={newsletter}>
-        Coucou {data}
+        Hello {/* {data} */}
       </div>
     </Layout>
   )
