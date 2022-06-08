@@ -115,8 +115,10 @@
 }
 
 .header__logo {
-  height: 100%;
-  width: 5rem;
+  /* height: 100%; */
+  /* width: 5rem; */
+  height: 4.5rem;
+  margin-top: 0.5rem;
 }
 
 .header__nav__list {
@@ -311,13 +313,13 @@
 }
 
 .pages__titles__subtitle {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: bold;
   width: 100%;
   margin: 0 auto 1rem;
   color: #b6c6c7;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 
@@ -325,6 +327,9 @@
   .pages__titles__main {
     font-size: 5em;
   } 
+  .pages__titles__subtitle {
+    font-size: 2em;
+  }
 } 
 
 @media (min-width: 800px) {

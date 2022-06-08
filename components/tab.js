@@ -1,14 +1,18 @@
-import styles from '../pages/galerie/galerie.module.scss';
+import styles from './layout.module.scss';
 
-export default function Tab({ name, id, tabFunction }) {
-    const { tab } = styles;
+export default function Tab({ classStyle, tabs, tabFunction }) {
+    const { tab, tab__container } = styles;
     const handleClick = (event) => {
       tabFunction(event.target.textContent)
     }
-    console.log(id);
   return (
-    <div className={tab} onClick={handleClick} id={`${id}-tab`}>
-        <span>{name}</span>
+    <div className={tab__container}>
+      {tabs.map((currentTab) => (
+        <div className={tab} onClick={handleClick} id={`${currentTab.id}-tab`}>
+          <span>{currentTab.name}</span>
+        </div>
+      ))}
     </div>
+    
   )
 }

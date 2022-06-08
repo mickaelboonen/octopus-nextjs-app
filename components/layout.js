@@ -40,15 +40,7 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         <Link href="/">
           <a>
-            <Image
-              src={logo}
-              className={styles.header__logo}
-              alt="Logo of the author"
-              width={50} // automatically provided
-              height={100} // automatically provided
-              // blurDataURL="data:..." automatically provided
-              // placeholder="blur" // Optional blur-up while loading
-            />
+            <img className={styles.header__logo} src={logo.src} alt="" />
           </a>
         </Link>
         <div className={styles.header__burger} onClick={handleBurgerClick}>

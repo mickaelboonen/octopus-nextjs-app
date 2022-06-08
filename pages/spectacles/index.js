@@ -40,11 +40,11 @@ export default function Spectacles() {
       name: 'VIOLENTES',
       picture: lavender,
     },
-    {
-      id: 2,
-      name: 'TEST',
-      picture: muguet,
-    },
+    // {
+    //   id: 2,
+    //   name: 'TEST',
+    //   picture: muguet,
+    // },
     // {
     //   id: 3,
     //   name: 'NUMBER THREE',

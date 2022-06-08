@@ -60,9 +60,7 @@ export default function Galerie() {
         <PageTitle>
           Galerie
         </PageTitle>
-        <div className={galerie__tabs}>
-          {spectacles.map((currentSpectacle) => <Tab key={currentSpectacle.id} {...currentSpectacle} tabFunction={setNewPhotosArray} />)}
-        </div>
+        <Tab classStyle={galerie__tabs} tabs={spectacles}  tabFunction={setNewPhotosArray} />
         <div className={galerie__images}>
           {photosArray.map((photo) => <Picture {...photo} /> )}
         </div> 

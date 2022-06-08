@@ -1,0 +1,48 @@
+.tab__container {
+    color: #b6c6c7 ;
+    display: flex;
+    font-family: Archive, sans-serif;
+    border-bottom: 1px solid #d73a3ab2;
+    margin-bottom: 0.5rem;
+  }
+
+.tab {
+    text-align: center;
+    // font-size: em;
+    padding: 0.5rem 0;
+    transition: 0.5s;
+    width: 100%;
+    cursor: pointer;
+  
+    &__active {
+      border-radius: 15px 15px 0 0;
+      background-color: #d73a3ab2;
+    }
+  }
+
+
+@media (min-width: 500px) {  
+
+    .tab__container {
+        color: #b6c6c7 ;
+        display: flex;
+        font-family: Archive, sans-serif;
+        border-bottom: 1px solid #d73a3ab2;
+        margin-bottom: 0.5rem;
+
+    }
+    .tab {
+        text-align: center;
+        font-size: 2em;
+        padding: 0.5rem 0;
+        transition: 0.5s;
+        width: 100%;
+        cursor: pointer;
+      
+        &__active {
+          border-radius: 15px 15px 0 0;
+          background-color: #d73a3ab2;
+        }
+
+    }
+}
