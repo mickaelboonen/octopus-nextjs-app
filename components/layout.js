@@ -18,7 +18,6 @@ export default function Layout({ children, home }) {
   const handleBurgerClick = () => {
     setIsOpen(!isOpen);
   }
-  console.log(logo);
   return (
     <div className={styles.container}>
       <Head>
