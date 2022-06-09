@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
-import frontPageStyles from '../styles/test.module.scss'
+// import frontPageStyles from '../styles/test.module.scss'
+import frontPageStyles from '../components/layout.module.scss'
 import Link from 'next/link'
 import Facebook from '../public/images/facebook.svg';
+import Footer from '../components/footer.js';
 
 export default function Home() {
   const nav = ['collectif', 'agenda', 'spectacles', 'galerie', 'contact' ];
@@ -15,9 +17,6 @@ export default function Home() {
     header__nav__list__item,
     header__nav__list__link,
     main,
-    footer,
-    footer__nav,
-    footer__nav__element,
   } = frontPageStyles;
   return (
     <div>
@@ -52,17 +51,7 @@ export default function Home() {
         </nav>
     </header>
     <main className={main} />
-    <footer className={footer}>
-        <nav className={footer__nav}>
-            <div className={footer__nav__element}>Mentions légales</div>
-            <div className={footer__nav__element}></div>
-            <img src={Facebook.src} alt="" style={{'color': 'white',}}/>
-            {/* <form className={footer__nav__form} action="">
-                <input type="email" name="" id="" placeholder="Email" />
-                <button type="submit">Recevoir les news</button>
-            </form> */}
-        </nav>
-    </footer>
+    <Footer />
     </div>
   )
 }

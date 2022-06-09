@@ -46,3 +46,152 @@
 
     }
 }
+
+//-----------------------------------------------------------------------------------------
+
+
+
+.body {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+}
+/* HEADER------------------------------------------------------------------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0 0 7vh 0;
+  max-width: 65vw;
+  margin: auto;
+  text-transform: uppercase;
+  font-family: Archive, sans-serif;
+  z-index: 1;
+
+  &__title {
+      font-size: 3em;
+      width: 100%;
+      text-align: center;
+      margin: 1rem auto 0;
+      color: #d73a3b;
+      opacity: 0.75;
+      text-shadow: 1px 1px 1px #1a1a1a;
+  }
+
+  &__subtitle {
+      font-size: 2em;
+      font-weight: bold;
+      width: 100%;
+      margin: 0 auto 1rem;
+      color: #b6c6c7;
+      display: flex;
+      justify-content: space-evenly;
+  }
+
+  &__nav__list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 70vw;
+      margin: auto;
+      padding: 1rem auto;
+      border-top: 1px solid #d73a3b;
+      border-bottom: 1px solid #d73a3b;
+      font-size: 1.5rem;
+  
+      &__item {
+          margin: 0.5rem;
+      }
+  
+      &__link {
+          margin: 1rem;
+          color: #086766;
+          transition: 0.5s;
+  
+          &:hover {
+              color: #d73a3b;
+          }
+      }
+  }
+}
+
+@media (min-width: 500px) {  
+}
+
+
+@media (min-width: 710px) {  
+  .header__nav__list {
+      flex-direction: row;
+      justify-content: space-evenly;
+
+      &__item {
+          margin: 1rem 0.5rem;
+      }
+  }
+
+  .header__title {
+      font-size: 4em;
+  }
+
+  .header__subtitle {
+      font-size: 2.5em;
+  }
+}
+
+
+@media (min-width: 900px) {  
+  .header__title {
+      font-size: 5em;
+  }
+
+  .header__subtitle {
+      font-size: 3em;
+  }
+
+}
+
+@media (min-width: 1100px) {
+  .header__title {
+      font-size: 6em;
+  }
+
+  .header__subtitle {
+      font-size: 3.5em;
+  }
+
+}
+
+@media (min-width: 1500px) {
+  .header__title {
+      font-size: 8em;
+  }
+
+  .header__subtitle {
+      font-size: 4em;
+  }
+
+}
+
+/* MAIN------------------------------------------------------------------- */
+.main {
+  background-image: url("../public/images/accueil.jpg");
+  filter: grayscale(100%);
+  background-size: cover;
+  background-position: center;
+  height: 93vh;
+  width: 100%;
+  z-index: -1;
+}
+
+@media (min-width: 1100px) {
+  .main {
+      background-size: contain;
+      background-position: center;
+  }
+
+}

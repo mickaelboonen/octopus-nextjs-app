@@ -2,27 +2,6 @@
 @font-face { font-family: Archive; src: url('../public/fonts/Archive/Archive.otf'); } 
 @font-face { font-family: Exodus; src: url('../public/fonts/Exodus/fonts/Exodus-PersonalUse-Striped.otf'); } 
 
-.a {
-  /* $primary-color: #ba4a5c;
-  $secondary-color: #0ea29f;
-  $tertiary-color: #b6c6c7;
-  $quaternary-color: #040404;
-  $quinary-color: #651011;
-  $senary-color: #086766;
-  $septenary-color: #2f0a0a;
-  $octonary-color: #0b3c44;
-  $nonary-color: #1c7c84; */
-  color: #ba4a5c;
-  color: #0ea29f;
-  color: #b6c6c7;
-  color: #040404;
-  color: #651011;
-  color: #086766;
-  color: #2f0a0a;
-  color: #0b3c44;
-  color: #1c7c84;
-}
-
 .body {
   /* height: 100vh; */
   display: flex;

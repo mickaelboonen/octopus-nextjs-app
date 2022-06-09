@@ -4,11 +4,13 @@ $light-blue-border: 1px solid #1c7c84;
 $dark-blue-border: 1px solid #0b3c44;
 
 .footer {
-    width: calc(100% - 2px);
-    min-height: 7vh;
-    background-color: #d73a3b;
+    width: 100%;
+    height: 7vh;
     background-color: #040404;
-    
+    z-index: 999;
+    margin: auto;
+    font-family: Archive, sans-serif;
+    font-size: 0.8em;
 
     & a {
       color: #b6c6c7;
@@ -17,15 +19,10 @@ $dark-blue-border: 1px solid #0b3c44;
     &__nav {
       max-width: 80vw;
       padding: 1rem;
-      margin: auto;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-
-      // &__element {
-      //   text-align: right;
-      // }
     }
   }
   
