@@ -1,10 +1,14 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import Link from 'next/link'
 import Image from 'next/image'
 import lavender from '../../public/images/random/lavender.jpg'
 import muguet from '../../public/images/random/muguet.jpg'
 import sakura from '../../public/images/random/sakura.jpg'
 import violentes from '../../public/images/photos/bnw1.jpg'
+
+// import document from '../../data/test.pdf';
 
 // Components
 import Layout from '../../components/layout'
@@ -13,7 +17,6 @@ import PageSubtitle from '../../components/page_subtitle';
 import Tab from '../../components/tab';
 
 import styles from './spectacle.module.scss';
-import { useState } from 'react';
 
 export default function Spectacles() {
   const {
@@ -25,9 +28,8 @@ export default function Spectacles() {
     spectacle__menu__container__dates__list__item,
     spectacle__container__banner,
     spectacle__menu,
+    spectacle__menu__open,
     spectacle__menu__container,
-    spectacle__container__data,
-    tab__active,
   } = styles;
   const spectacles = [
     {
@@ -48,29 +50,38 @@ export default function Spectacles() {
     },
   ];
 
-
+  const [isAgendaOpen, setAgendaOpen] = useState(false);
+  useEffect(() => {}, [isAgendaOpen]);
+  const handleClick = () => {
+    setAgendaOpen(!isAgendaOpen);
+  }
+  const temporaryArray = [1, 2, 3, 4 ,5 ,6 ,7 ,8 ,9 ,10 ,11,1, 2, 3, 4 ,5 ,6 ,7 ,8 ,9 ,10 ,11, 12, 13, 14 , 15 , 16 , 17 ,18]
+  const menu = (
+    <div className={spectacle__menu__container}>
+      <div className={spectacle__menu__container__dates}>
+        <h3>Date des Représentations</h3>
+        <ul className={spectacle__menu__container__dates__list}>
+          {temporaryArray.map((tempId) => (
+            <li
+              key={tempId}
+              className={spectacle__menu__container__dates__list__item}
+            >
+              Date - Lieu, Ville 
+            </li>
+          ))}
+        </ul>
+        <button className={spectacle__menu__container__button}>Dossier de Presse</button>
+      </div>
+    </div>
+  );
   return (
     <Layout>
       <Head>
         <title>Les Spectacles</title>
       </Head>
       <div className={spectacle}>
-          <div className={spectacle__menu}>
-            <div className={spectacle__menu__container}>
-              <div className={spectacle__menu__container__dates}>
-                <h3>Date des Représentations</h3>
-                <ul className={spectacle__menu__container__dates__list}>
-                  <li className={spectacle__menu__container__dates__list__item}>Date - Lieu, Ville </li>
-                  <li className={spectacle__menu__container__dates__list__item}>Date - Lieu, Ville </li>
-                  <li className={spectacle__menu__container__dates__list__item}>Date - Lieu, Ville </li>
-                  <li className={spectacle__menu__container__dates__list__item}>Date - Lieu, Ville </li>
-                  <li className={spectacle__menu__container__dates__list__item}>Date - Lieu, Ville </li>
-                  <li className={spectacle__menu__container__dates__list__item}>Date - Lieu, Ville </li>
-                </ul>
-              </div>
-            <button className={spectacle__menu__container__button} type="button">Dossier de Presse</button>
-            </div>
-          </div>
+        {isAgendaOpen && <div className={spectacle__menu__open} onClick={handleClick}>{menu}</div>}
+        {!isAgendaOpen && <div className={spectacle__menu} onClick={handleClick}></div>}
           <div className={spectacle__container}>
             <PageTitle>
               Violentes
