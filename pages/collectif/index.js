@@ -20,6 +20,7 @@ export default function Collectif() {
     collectif__team__display,
     collectif__team__display__container,
     collectif__team__display__container__image,
+    collectif__team__container,
   } = styles;
   const teamMembers = [
     {
@@ -32,7 +33,7 @@ export default function Collectif() {
     },
     {
       id: 2,
-      name: 'X',
+      name: 'Marie-Christine',
       pronouns: 'She / Her / He / Him / They / Their',
       role: 'Y',
       picture: lavender,
@@ -40,7 +41,7 @@ export default function Collectif() {
     },
     {
       id: 3,
-      name: 'X',
+      name: 'Thelonious',
       pronouns: 'She / Her / He / Him / They / Their',
       role: 'Y',
       picture: lavender,
@@ -207,7 +208,6 @@ export default function Collectif() {
   }
   const setNewTab = (currentTab) => {
     toggleTabClassname(currentTab);
-    console.log(currentTab);
     if (currentTab === 'Collectif') {
       setTabDisplay('collectif');
     }
@@ -231,7 +231,7 @@ export default function Collectif() {
         <Tab classStyle={collectif__tabs} tabs={tabs}  tabFunction={setNewTab} />
         {tabDisplay ==='collectif' && (
           <div className={collectif__team__display__container}>
-            colectif Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati culpa quibusdam dolorem dolore nulla hic, quia esse inventore beatae! Reprehenderit eos quaerat consequuntur nemo corporis veniam quidem, nisi numquam maxime rerum quas exercitationem quia totam? Explicabo alias quas possimus consectetur delectus, dolores, aperiam unde est debitis placeat, ex corrupti ad. Natus doloribus labore dolores quaerat distinctio. Nam quo ad earum molestias similique adipisci impedit aut ut dolorem facilis fuga corporis quam atque molestiae veritatis, veniam magnam rem quidem voluptates ipsam. Ut illum voluptas rerum repudiandae quasi veniam! Id officiis fugiat tempore eos libero. Illo, quos maiores? Veniam inventore, accusamus iusto consequatur eaque praesentium sit pariatur quis exercitationem magni ipsum, quisquam perferendis, nostrum illo aspernatur nobis. Eius dolores, tempora harum placeat eos, quae, ut eveniet quos saepe illo architecto quo quaerat cupiditate mollitia voluptatibus fuga. Asperiores fugiat excepturi ex deleniti voluptas enim ipsam reiciendis possimus, culpa obcaecati facere nostrum doloribus pariatur corrupti, fugit modi debitis natus recusandae aliquid esse voluptatibus? Possimus facere necessitatibus officia excepturi maxime ipsam optio obcaecati eveniet magni ad magnam sit, distinctio cumque non neque voluptatum recusandae esse soluta minima ex veniam tempore laborum vel iste? Nemo exercitationem sequi consectetur error debitis natus ab ad molestiae ex libero.
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati culpa quibusdam dolorem dolore nulla hic, quia esse inventore beatae! Reprehenderit eos quaerat consequuntur nemo corporis veniam quidem, nisi numquam maxime rerum quas exercitationem quia totam? Explicabo alias quas possimus consectetur delectus, dolores, aperiam unde est debitis placeat, ex corrupti ad. Natus doloribus labore dolores quaerat distinctio. Nam quo ad earum molestias similique adipisci impedit aut ut dolorem facilis fuga corporis quam atque molestiae veritatis, veniam magnam rem quidem voluptates ipsam. Ut illum voluptas rerum repudiandae quasi veniam! Id officiis fugiat tempore eos libero. Illo, quos maiores? Veniam inventore, accusamus iusto consequatur eaque praesentium sit pariatur quis exercitationem magni ipsum, quisquam perferendis, nostrum illo aspernatur nobis. Eius dolores, tempora harum placeat eos, quae, ut eveniet quos saepe illo architecto quo quaerat cupiditate mollitia voluptatibus fuga. Asperiores fugiat excepturi ex deleniti voluptas enim ipsam reiciendis possimus, culpa obcaecati facere nostrum doloribus pariatur corrupti, fugit modi debitis natus recusandae aliquid esse voluptatibus? Possimus facere necessitatibus officia excepturi maxime ipsam optio obcaecati eveniet magni ad magnam sit, distinctio cumque non neque voluptatum recusandae esse soluta minima ex veniam tempore laborum vel iste? Nemo exercitationem sequi consectetur error debitis natus ab ad molestiae ex libero.</p>
           </div>
         )}
         {tabDisplay ==='team' && (
@@ -246,7 +246,7 @@ export default function Collectif() {
               )}
               {memberToDisplay !== null && <TeamMember member={memberToDisplay} />}
             </div>
-            <div className={collectif__team__list}>
+            <div className={collectif__team__list} id="members-list">
               {teamMembers.map((member) => (
                 <div key={member.id} className={collectif__team__list__item} style={{'background-image': `url(${member.picture.src})`}} onClick={handleClick} id={member.name}>
                   <div className={collectif__team__list__item__info}>
@@ -257,7 +257,6 @@ export default function Collectif() {
                 </div>
                 
               ))}
-              
             </div>
           </div>
         )}
