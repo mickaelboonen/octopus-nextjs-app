@@ -285,6 +285,7 @@
   margin: 1rem auto;
   font-family: inherit;
   opacity: 0.75;
+  letter-spacing: 1rem;
 }
 
 .pages__titles__main span:first-child {
