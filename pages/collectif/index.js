@@ -1,13 +1,22 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../../components/layout'
 import Tab from '../../components/tab';
 import PageTitle from '../../components/page_title';
 import styles from './collectif.module.scss';
 import lavender from '../../public/images/photos/bnw1.jpg'
-import TeamMember from '../../components/team_member';
+import TeamMember from '../../components/team_member';import Cors from 'cors'
+import axios from 'axios';
 
+// Initializing the cors middleware
+const cors = Cors({
+  methods: ['GET', 'HEAD'],
+})
+const api = axios.create({
+  baseURL: 'http://localhost:8000',
+});
+axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 export default function Collectif() {
   const {
     collectif,
@@ -196,6 +205,7 @@ export default function Collectif() {
   ]
   const [tabDisplay, setTabDisplay] = useState('collectif')
   const [memberToDisplay, setMemberToDisplay] = useState(null)
+  const [artists, setArtists] = useState([])
   const toggleTabClassname = (currentTab) => {
     tabs.forEach((tabElement) => {
       const tab = document.querySelector(`#${tabElement.id}-tab`);
@@ -219,6 +229,20 @@ export default function Collectif() {
     const newMemberToDisplay = teamMembers.find((member) => member.name === event.currentTarget.id);
     setMemberToDisplay(newMemberToDisplay);
   }
+
+  const apiRoot = 'http://localhost:8000';
+  useEffect(() => {
+      api.get('/api/artists')
+        .then((response) => {
+          console.log(response.data);
+
+          const artistsArray = response.data.map((artist) => {
+            artist.theaterRoles = artist.theaterRoles.split(',');
+            return artist;
+          })
+          setArtists(artistsArray);
+        })
+  }, [])
   return (
     <Layout>
       <Head>
@@ -247,15 +271,14 @@ export default function Collectif() {
               {memberToDisplay !== null && <TeamMember member={memberToDisplay} />}
             </div>
             <div className={collectif__team__list} id="members-list">
-              {teamMembers.map((member) => (
-                <div key={member.id} className={collectif__team__list__item} style={{'background-image': `url(${member.picture.src})`}} onClick={handleClick} id={member.name}>
+              {artists.map((member) => (
+                <div key={member.id} className={collectif__team__list__item} style={{'background-image': `url(${member.image})`}} onClick={handleClick} id={member.name}>
                   <div className={collectif__team__list__item__info}>
                     <span>{member.name}</span>
                     <span>{member.pronouns}</span>
-                    <span>{member.role}</span>
+                    <span>{member.theaterRoles.map((role) => role + ', ')}</span>
                   </div>
                 </div>
-                
               ))}
             </div>
           </div>

@@ -180,7 +180,9 @@ export default function Galerie() {
 
     setSpectaclesArray(filteredSpectacles);
     setButtonSorting(event.target.value);
-    
+
+    // Sets the new array with years matching the filtered spectacles
+    setSpectaclesYears(setYearsArray(filteredSpectacles));
   }
 
   // States
@@ -232,6 +234,9 @@ export default function Galerie() {
             })}
           </div>
         ))}
+        {spectaclesYears.length === 0 && (
+          <div>Gérer un message d'erreur</div>
+        )}
       </div>
     </Layout>
   )

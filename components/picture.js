@@ -1,9 +1,10 @@
 
 import styles from '../pages/galerie/galerie.module.scss';
 
-export default function Picture({ picture, credits }) {
+export default function Picture({ url, credits }) {
+    // console.log(picture);
     const divStyle = {
-        backgroundImage: `url(${picture.src})`,
+        backgroundImage: `url(http://localhost:8000/${url})`,
     }
     const { galerie__images__photo, galerie__images__photo__credit } = styles;
   return (
