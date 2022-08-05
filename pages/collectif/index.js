@@ -1,198 +1,33 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+// Components
 import Layout from '../../components/layout'
 import Tab from '../../components/tab';
 import PageTitle from '../../components/page_title';
-import styles from './collectif.module.scss';
-import lavender from '../../public/images/photos/bnw1.jpg'
-import TeamMember from '../../components/team_member';import Cors from 'cors'
-import axios from 'axios';
+import TeamMember from '../../components/team_member';
 
-// Initializing the cors middleware
-const cors = Cors({
-  methods: ['GET', 'HEAD'],
-})
+// Styles
+import styles from './collectif.module.scss';
+import compStyles from '../../components/layout.module.scss';
+
+// Defining axios and the api
 const api = axios.create({
   baseURL: 'http://localhost:8000',
 });
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+
 export default function Collectif() {
   const {
     collectif,
-    collectif__tabs,
     tab__active,
     collectif__team,
     collectif__team__list,
-    collectif__team__list__item,
-    collectif__team__list__item__info,
     collectif__team__display,
     collectif__team__display__container,
-    collectif__team__display__container__image,
-    collectif__team__container,
   } = styles;
-  const teamMembers = [
-    {
-      id: 1,
-      name: 'Sol',
-      pronouns: 'He / Him',
-      role: 'Acteur',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 2,
-      name: 'Marie-Christine',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 3,
-      name: 'Thelonious',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 4,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 5,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 6,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 7,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 8,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 9,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-      picture: lavender,
-    },
-    {
-      id: 10,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 1,
-      name: 'Sol',
-      pronouns: 'He / Him',
-      role: 'Acteur',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 2,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 3,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 4,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 5,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 6,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 7,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 8,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-    {
-      id: 9,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-      picture: lavender,
-    },
-    {
-      id: 10,
-      name: 'X',
-      pronouns: 'She / Her / He / Him / They / Their',
-      role: 'Y',
-      picture: lavender,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, dicta officia aut, aliquid similique nesciunt veritatis atque sequi natus illum quasi iste provident voluptatibus, nostrum explicabo? Adipisci autem nemo unde officia natus ratione quas est odit! Delectus ad ut esse distinctio officiis alias officia dolor deserunt, quae id nisi eligendi?',
-    },
-  ]
+
   const tabs = [
     {
       name: 'Collectif',
@@ -206,11 +41,14 @@ export default function Collectif() {
   const [tabDisplay, setTabDisplay] = useState('collectif')
   const [memberToDisplay, setMemberToDisplay] = useState(null)
   const [artists, setArtists] = useState([])
+  const [isFormer, setIsFormer] = useState(false)
+
   const toggleTabClassname = (currentTab) => {
+    console.log(currentTab);
     tabs.forEach((tabElement) => {
       const tab = document.querySelector(`#${tabElement.id}-tab`);
       if (tabElement.name === currentTab) 
-      tab.classList.add(tab__active);
+        tab.classList.add(tab__active);
       else { 
         tab.classList.remove(tab__active);
       }
@@ -229,20 +67,42 @@ export default function Collectif() {
     const newMemberToDisplay = teamMembers.find((member) => member.name === event.currentTarget.id);
     setMemberToDisplay(newMemberToDisplay);
   }
-
-  const apiRoot = 'http://localhost:8000';
+  
   useEffect(() => {
-      api.get('/api/artists')
-        .then((response) => {
-          console.log(response.data);
+    api.get('/api/artists')
+      .then((response) => {
 
-          const artistsArray = response.data.map((artist) => {
-            artist.theaterRoles = artist.theaterRoles.split(',');
-            return artist;
-          })
-          setArtists(artistsArray);
+        let artistsArray = response.data.filter((artist) => artist.isFormer === isFormer);
+        console.log(artistsArray);
+
+        artistsArray = artistsArray.map((artist) => {
+          artist.theaterRoles = artist.theaterRoles.split(',');
+          return artist;
         })
+        setArtists(artistsArray);
+      })
+    // Gets the id of the first tab to be displayed
+    const { id } = tabs[0];
+    // So we can get the element of the first tab
+    const firstTabElement = document.querySelector(`#${id}-tab`);
+    // And apply the right class
+    firstTabElement.classList.add(tab__active);
   }, [])
+
+  const handleClickOnSeeFormerMembers = () => {
+    api.get('/api/artists')
+      .then((response) => {
+        setIsFormer(!isFormer);
+
+        let artistsArray = response.data.filter((artist) => artist.isFormer === !isFormer)
+
+        artistsArray = artistsArray.map((artist) => {
+          artist.theaterRoles = artist.theaterRoles.split(',');
+          return artist;
+        })
+        setArtists(artistsArray);
+      })
+  }
   return (
     <Layout>
       <Head>
@@ -252,7 +112,7 @@ export default function Collectif() {
         <PageTitle>
           Les Pieuvres
         </PageTitle>
-        <Tab classStyle={collectif__tabs} tabs={tabs}  tabFunction={setNewTab} />
+        <Tab tabs={tabs}  tabFunction={setNewTab} />
         {tabDisplay ==='collectif' && (
           <div className={collectif__team__display__container}>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati culpa quibusdam dolorem dolore nulla hic, quia esse inventore beatae! Reprehenderit eos quaerat consequuntur nemo corporis veniam quidem, nisi numquam maxime rerum quas exercitationem quia totam? Explicabo alias quas possimus consectetur delectus, dolores, aperiam unde est debitis placeat, ex corrupti ad. Natus doloribus labore dolores quaerat distinctio. Nam quo ad earum molestias similique adipisci impedit aut ut dolorem facilis fuga corporis quam atque molestiae veritatis, veniam magnam rem quidem voluptates ipsam. Ut illum voluptas rerum repudiandae quasi veniam! Id officiis fugiat tempore eos libero. Illo, quos maiores? Veniam inventore, accusamus iusto consequatur eaque praesentium sit pariatur quis exercitationem magni ipsum, quisquam perferendis, nostrum illo aspernatur nobis. Eius dolores, tempora harum placeat eos, quae, ut eveniet quos saepe illo architecto quo quaerat cupiditate mollitia voluptatibus fuga. Asperiores fugiat excepturi ex deleniti voluptas enim ipsam reiciendis possimus, culpa obcaecati facere nostrum doloribus pariatur corrupti, fugit modi debitis natus recusandae aliquid esse voluptatibus? Possimus facere necessitatibus officia excepturi maxime ipsam optio obcaecati eveniet magni ad magnam sit, distinctio cumque non neque voluptatum recusandae esse soluta minima ex veniam tempore laborum vel iste? Nemo exercitationem sequi consectetur error debitis natus ab ad molestiae ex libero.</p>
@@ -272,14 +132,11 @@ export default function Collectif() {
             </div>
             <div className={collectif__team__list} id="members-list">
               {artists.map((member) => (
-                <div key={member.id} className={collectif__team__list__item} style={{'background-image': `url(${member.image})`}} onClick={handleClick} id={member.name}>
-                  <div className={collectif__team__list__item__info}>
-                    <span>{member.name}</span>
-                    <span>{member.pronouns}</span>
-                    <span>{member.theaterRoles.map((role) => role + ', ')}</span>
-                  </div>
-                </div>
+                <TeamMember key={member.id} {...member} handler={handleClick} />
               ))}
+                <div className={compStyles.teammember} style={{'background-image': `url()`}} onClick={handleClickOnSeeFormerMembers}>
+                    <span>{!isFormer ? 'Voir les anciens membres...' : 'Voir les membres actuels'}</span>
+                </div>
             </div>
           </div>
         )}

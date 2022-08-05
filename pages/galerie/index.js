@@ -1,26 +1,28 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Layout from '../../components/layout'
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import axios from 'axios';
+
+// Components
+import Layout from '../../components/layout';
 import Picture from '../../components/picture';
 import Tab from '../../components/tab';
 import PageTitle from '../../components/page_title';
 
-import { galeryArray } from '../../data/galerie';
-
+// Styles
 import styles from './galerie.module.scss';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import layoutStyles from '../../components/layout.module.scss';
 
+// Axios and API
 const api = axios.create({
   baseURL: 'http://localhost:8000',
 });
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+
 export default function Galerie() {
   const {
     galerie,
     galerie__images,
     galerie__tabs,
-    tab__active,
   } = styles;
   const spectacles = [
     {
@@ -32,7 +34,6 @@ export default function Galerie() {
       name: 'TEST'
     },
   ];
-
   const [photosArray, setGaleryArray] = useState([])
 
   const toggleTabClassname = (currentTab) => {
@@ -40,17 +41,27 @@ export default function Galerie() {
       const tab = document.querySelector(`#${spec.name}-tab`);
       
       if (spec.name === currentTab)
-      tab.classList.add(tab__active);
+      tab.classList.add(layoutStyles.tab__active);
       else { 
-        tab.classList.remove(tab__active);
+        tab.classList.remove(layoutStyles.tab__active);
       }
     })
   }
+
+  // On charging of the page, fetch the data for the first tap
+  // todo : a améliorer
   useEffect(() => {
     api.get('/api/pictures/4')
     .then((response) => {
       setGaleryArray(response.data);
     })
+    
+    // Gets the id of the first tab to be displayed
+    const { id } = spectacles[0];
+    // So we can get the element of the first tab
+    const firstTabElement = document.querySelector(`#${id}-tab`);
+    // And apply the right class
+    firstTabElement.classList.add(layoutStyles.tab__active);
   }, [])
 
   const setNewPhotosArray = (currentTab) => {

@@ -124,6 +124,11 @@
           }
         }
       }
+
+      &__button {
+        display: block;
+        border: 1px solid #ba4a5c;
+      }
     }
 
 }
@@ -151,6 +156,19 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+
+        &__members {
+          order: 2;
+          width: 100%;
+          height: 100%;
+          padding: 1rem;
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-between;
+        }
+        &__button {
+          order: 2;
+        }
 
         &__item {
           width: 10rem;
@@ -216,43 +234,43 @@
   }
 }
 
-.teamMemberContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+// .teamMemberContainer {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
 
-  &__image {
-    max-width: 95%;
-    height: 10rem;
-    margin-top: 0.5rem;
-  }
-  & p {
-    line-height: 1.3;
-  }
+//   &__image {
+//     max-width: 95%;
+//     height: 10rem;
+//     margin-top: 0.5rem;
+//   }
+//   & p {
+//     line-height: 1.3;
+//   }
 
-  &__name {
-    margin-top: 0.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-family: Archive, sans-serif;
-    font-size: 1.2em;
-    color: #d73a3ab2;
-    letter-spacing: 5px;
+//   &__name {
+//     margin-top: 0.5rem;
+//     font-weight: bold;
+//     text-transform: uppercase;
+//     font-family: Archive, sans-serif;
+//     font-size: 1.2em;
+//     color: #d73a3ab2;
+//     letter-spacing: 5px;
     
-  }
+//   }
 
-  &__role {
-    font-weight: bold;
-  }
+//   &__role {
+//     font-weight: bold;
+//   }
 
-  &__pronouns {
-    font-style: italic;
-  }
+//   &__pronouns {
+//     font-style: italic;
+//   }
 
-  &__description {
-    text-align: justify;
-    margin: 1rem;
-  }
-}
+//   &__description {
+//     text-align: justify;
+//     margin: 1rem;
+//   }
+// }
 
