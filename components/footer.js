@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Fb from '../public/images/facebook.svg';
+import Insta from '../public/images/instagram.svg';
 
 export default function Footer() {
     const {
@@ -36,7 +37,16 @@ export default function Footer() {
           </Link>
         </div>
         <div className={footer__nav__element}>
-          <img src={Fb.src} alt="" />
+          <Link href="https://www.facebook.com/VIOLENTES">
+            <a>
+              <img src={Fb.src} alt="" />
+            </a>
+          </Link>
+          <Link href="https://www.instagram.com/les_pieuvres/">
+            <a>
+              <img src={Insta.src} alt="" />
+            </a>
+          </Link>
         </div>
         <div className={footer__nav__element}>
           <Link href="/newsletter">
