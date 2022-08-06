@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
-import axios from 'axios';
-import { setPhotosArray } from '../../app/reducer/galerie'
+import { fetchPhotos } from '../../app/reducer/galerie'
 import { useDispatch, useSelector } from 'react-redux'
 
 // Components
@@ -14,12 +13,6 @@ import PageTitle from '../../components/page_title';
 import styles from './galerie.module.scss';
 import layoutStyles from '../../components/layout.module.scss';
 
-// Axios and API
-const api = axios.create({
-  baseURL: 'http://localhost:8000',
-});
-axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
-
 export default function Galerie() {
   const {
     galerie,
@@ -27,61 +20,36 @@ export default function Galerie() {
     galerie__tabs,
   } = styles;
 
-
   const dispatch = useDispatch();
   const { spectacles, photosArray } = useSelector((state) => state.galerie);
-
-
-
-
-
-
-
-
+  
   const toggleTabClassname = (currentTab) => {
-    spectacles.forEach((spec) => {
-      const tab = document.querySelector(`#${spec.name}-tab`);
-      
-      if (spec.name === currentTab)
-      tab.classList.add(layoutStyles.tab__active);
+    const tabParentElement = document.querySelector(`#tabs`);
+    tabParentElement.childNodes.forEach((child) => {
+      if (child.id.includes(currentTab)) {
+        child.classList.add(layoutStyles.tab__active);
+      }
       else { 
-        tab.classList.remove(layoutStyles.tab__active);
+        child.classList.remove(layoutStyles.tab__active);
       }
     })
   }
 
-  // On charging of the page, fetch the data for the first tap
-  // todo : a améliorer
   useEffect(() => {
-    api.get('/api/pictures/4')
-    .then((response) => {
-      dispatch(setPhotosArray(response.data));
-    })
-    
     // Gets the id of the first tab to be displayed
     const { id } = spectacles[0];
-    // So we can get the element of the first tab
-    const firstTabElement = document.querySelector(`#${id}-tab`);
-    // And apply the right class
-    firstTabElement.classList.add(layoutStyles.tab__active);
+    // So as to fetch the data matching the id
+    dispatch(fetchPhotos(id));
+
+    // Gets the parent element of the tabs
+    const tabParentElement = document.querySelector(`#tabs`);
+    // Applies the right class to the first child
+    tabParentElement.firstChild.classList.add(layoutStyles.tab__active);
   }, [])
 
   const setNewPhotosArray = (currentTab) => {
+    dispatch(fetchPhotos(currentTab));
     toggleTabClassname(currentTab);
-    if (currentTab === "VIOLENTES") {
-      // TODO : a améliorer
-      api.get('/api/pictures/4')
-        .then((response) => {
-          dispatch(setPhotosArray(response.data));
-        })
-    }
-    else {
-      // TODO : a améliorer
-      api.get('/api/pictures/5')
-        .then((response) => {
-          dispatch(setPhotosArray(response.data));
-        })
-    }
   }
   return (
     <Layout>

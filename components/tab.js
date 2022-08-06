@@ -2,14 +2,13 @@ import { useEffect } from 'react';
 import styles from './layout.module.scss';
 
 export default function Tab({ tabs, tabFunction }) {
-  const { tab, tab__active, tab__container } = styles;
+  const { tab, tab__container } = styles;
   const handleClick = (event) => {
-    tabFunction(event.target.textContent)
+    tabFunction(Number(event.currentTarget.id.slice(0,1)));
   }
 
-
   return (
-    <div className={tab__container}>
+    <div className={tab__container} id="tabs">
       {tabs.map((currentTab) => (
         <div className={tab} onClick={handleClick} id={`${currentTab.id}-tab`}>
           <span>{currentTab.name}</span>
