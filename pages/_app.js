@@ -1,10 +1,12 @@
 import '../styles/reset.css'
 // import { AppStateProvider } from './my-context'
+import { Provider } from 'react-redux';
+import store from './../app/store';
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    // <AppStateProvider>
+    <Provider store={store}>
       <Component {...pageProps} />
-    // </AppStateProvider>
+    </Provider>
   )
 }

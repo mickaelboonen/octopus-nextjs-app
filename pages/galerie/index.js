@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
+import { setPhotosArray } from '../../app/reducer/galerie'
+import { useDispatch, useSelector } from 'react-redux'
 
 // Components
 import Layout from '../../components/layout';
@@ -24,17 +26,17 @@ export default function Galerie() {
     galerie__images,
     galerie__tabs,
   } = styles;
-  const spectacles = [
-    {
-      id: 'VIOLENTES',
-      name: 'VIOLENTES'
-    },
-    {
-      id: 'TEST',
-      name: 'TEST'
-    },
-  ];
-  const [photosArray, setGaleryArray] = useState([])
+
+
+  const dispatch = useDispatch();
+  const { spectacles, photosArray } = useSelector((state) => state.galerie);
+
+
+
+
+
+
+
 
   const toggleTabClassname = (currentTab) => {
     spectacles.forEach((spec) => {
@@ -53,7 +55,7 @@ export default function Galerie() {
   useEffect(() => {
     api.get('/api/pictures/4')
     .then((response) => {
-      setGaleryArray(response.data);
+      dispatch(setPhotosArray(response.data));
     })
     
     // Gets the id of the first tab to be displayed
@@ -70,14 +72,14 @@ export default function Galerie() {
       // TODO : a améliorer
       api.get('/api/pictures/4')
         .then((response) => {
-          setGaleryArray(response.data);
+          dispatch(setPhotosArray(response.data));
         })
     }
     else {
       // TODO : a améliorer
       api.get('/api/pictures/5')
         .then((response) => {
-          setGaleryArray(response.data);
+          dispatch(setPhotosArray(response.data));
         })
     }
   }
