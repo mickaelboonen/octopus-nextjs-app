@@ -2,17 +2,20 @@ import { configureStore } from '@reduxjs/toolkit';
 import appReducer from './reducer/app';
 import galerieReducer from './reducer/galerie';
 import teamReducer from './reducer/team';
+import playReducer from './reducer/play';
 
-import galerieMiddleware from '../middlewares/galerieMiddleware';
 import teamMiddleware from '../middlewares/teamMiddleware';
+import galerieMiddleware from '../middlewares/galerieMiddleware';
+import playMiddleware from '../middlewares/playMiddleware';
 
 export const store = configureStore({
   reducer: {
-    galerie: galerieReducer,
-    team: teamReducer,
     app: appReducer,
+    team: teamReducer,
+    galerie: galerieReducer,
+    play: playReducer,
   }, 
-  middleware: [galerieMiddleware, teamMiddleware],
+  middleware: [galerieMiddleware, teamMiddleware, playMiddleware],
 });
 
 export default store;

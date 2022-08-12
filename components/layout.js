@@ -9,6 +9,7 @@ import { useState } from 'react';
 import NavbarBurger from './navbar__burger'
 import Link from 'next/link'
 import Footer from './footer'
+import { useEffect } from 'react'
 
 const name = 'Lestrarcher'
 export const siteTitle = 'Les pieuvres'

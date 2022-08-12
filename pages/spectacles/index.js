@@ -1,114 +1,65 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import lavender from '../../public/images/random/lavender.jpg'
-import muguet from '../../public/images/random/muguet.jpg'
-import sakura from '../../public/images/random/sakura.jpg'
+import Head from 'next/head';
+import Link from 'next/link';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+
 
 // Components
 import Layout from '../../components/layout'
 import PageTitle from '../../components/page_title';
-import PageSubtitle from '../../components/page_subtitle';
-import Tab from '../../components/tab';
+import lavender from '../../public/images/random/lavender.jpg'
+
+// Actions
+import { fetchPlays, setWantedPlay } from '../../app/reducer/play';
 
 import styles from './spectacle.module.scss';
-import { useState } from 'react';
 
 export default function Spectacles() {
-  const spectacles = [
-    {
-      id: 1,
-      name: 'VIOLENTES',
-      picture: '',
-      synopsis: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id voluptate quasi aspernatur unde illum, suscipit distinctio! Soluta quas doloremque veniam delectus ut amet praesentium ipsa nam, id magnam dolorem, debitis distinctio nostrum iste repellat aliquid pariatur, voluptatum in earum atque saepe voluptas. Repellat, officiis aperiam amet neque illum deleniti quidem!',
-      creation: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio cum, sit dolor id facere expedita reprehenderit qui commodi aspernatur dicta ipsum neque quod numquam sequi, nulla quam esse officiis vero quo quisquam tempore hic quidem. Doloremque, accusantium. Error, assumenda qui mollitia nemo non perferendis officiis corrupti, officia ipsum, unde neque!',
-      distribution: [],
-    },
-    {
-      id: 2,
-      name: 'TEST',
-      picture: '',
-      synopsis: '',
-      creation: '',
-      disctribution: [],
-    },
-  ];
+  // State
+  const { isLoading, plays} = useSelector((state) => state.play);
 
-  const bis = [
-    {
-      id: 1,
-      name: 'VIOLENTES',
-      picture: lavender,
-    },
-    // {
-    //   id: 2,
-    //   name: 'TEST',
-    //   picture: muguet,
-    // },
-    // {
-    //   id: 3,
-    //   name: 'NUMBER THREE',
-    //   picture: sakura,
-    // },
-    // {
-    //   id: 3,
-    //   name: 'NUMBER THREE',
-    //   picture: sakura,
-    // },
-    // {
-    //   id: 1,
-    //   name: 'VIOLENTES',
-    //   picture: lavender,
-    // },
-    // {
-    //   id: 2,
-    //   name: 'TEST',
-    //   picture: muguet,
-    // },
-  ]
+  // Dispatch to be used when we need to dispatch the actions
+  const dispatch = useDispatch();
 
-  // TODO : factoriser / selectoriser
-  const toggleTabClassname = (currentTab) => {
-    spectacles.forEach((spec) => {
-      const tab = document.querySelector(`#${spec.name}-tab`);
+  // Styles
+  const {
+    spectacles,
+    spectacles__pictures,
+    spectacles__pictures__container,
+    spectacles__pictures__container__name,
+  } = styles;
+  const router = useRouter();
 
-      if (spec.name === currentTab)
-      tab.classList.add(tab__active);
-      else { 
-        tab.classList.remove(tab__active);
-      }
-    })
+  useEffect(() => {
+    dispatch(fetchPlays());
+  }, [])
+
+  const handleClick = (event) => {
+    dispatch(setWantedPlay(event.currentTarget.id));
+    router.push(`/spectacles/${event.currentTarget.id}`);
   }
 
-  const [spectacleToDisplay, setSpectacleToDisplay] = useState('VIOLENTES');
-
-  const changeSpectacle = (newTab) => {
-    toggleTabClassname(newTab);
-
-    const newSpectacleToDisplay = spectacles.find((spec) => spec.name === newTab);
-    setSpectacleToDisplay(newSpectacleToDisplay);
-
-  }
   return (
     <Layout>
       <Head>
         <title>Les Spectacles</title>
       </Head>
-      <div className={styles.spectacles}>
+      <div className={spectacles}>
         <PageTitle>
           Spectacles
         </PageTitle>
-        <div className={styles.spectacles__pictures}>
-          {bis.map((spec) => (
-            <Link href={`/spectacles/${spec.name}`}>
-              <a>
-                <div className={styles.spectacles__pictures__container} style={{'backgroundImage': `url(${spec.picture.src})`}}>
-                  <div className={styles.spectacles__pictures__container__name}>
+        <div className={spectacles__pictures}>
+          {plays.map((spec) => (
+            // <Link href={`/spectacles/${spec.name}`}>
+            //   <a>
+                <div onClick={handleClick} className={spectacles__pictures__container} id={spec.name} style={{'backgroundImage': `url(${lavender.src})`}}>
+                  <div className={spectacles__pictures__container__name}>
                     {spec.name}
                   </div>
                 </div>
-              </a>
-            </Link>
+            //   </a>
+            // </Link>
           ))}
         </div>
       </div>
