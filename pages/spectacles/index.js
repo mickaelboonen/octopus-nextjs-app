@@ -102,7 +102,7 @@ export default function Spectacles() {
           {bis.map((spec) => (
             <Link href={`/spectacles/${spec.name}`}>
               <a>
-                <div className={styles.spectacles__pictures__container} style={{'background-image': `url(${spec.picture.src})`}}>
+                <div className={styles.spectacles__pictures__container} style={{'backgroundImage': `url(${spec.picture.src})`}}>
                   <div className={styles.spectacles__pictures__container__name}>
                     {spec.name}
                   </div>

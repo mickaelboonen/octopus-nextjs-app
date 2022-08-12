@@ -30,7 +30,7 @@ export default function Footer() {
     <footer className={footer}>
       <nav className={footer__nav}>
         <div className={footer__nav__element}>
-          <Link href="">
+          <Link href="/troll">
             <a>
               Mentions légales
             </a>

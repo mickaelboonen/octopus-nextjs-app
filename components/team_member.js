@@ -6,13 +6,12 @@ export default function TeamMember({ name, pronouns, id, theaterRoles,  handler 
     teammember,
     teammember__info,
     } = compStyles;
-    
   return (
     <div className={teammember} style={{'backgroundImage': `url(${lavender.src})`}} onClick={handler} id={id}>
       <div className={teammember__info}>
         <span>{name}</span>
         <span>{pronouns}</span>
-        <span>{theaterRoles.map((role) => role + ', ')}</span>
+        {/* <span>{theaterRoles.map((role) => role + ', ')}</span> */}
       </div>
     </div>
   )
