@@ -1,7 +1,7 @@
 import styles from '../pages/agenda/agenda.module.scss';
 import Link from 'next/link'
 
-export default function SpectacleDate({ date, show, showUrl, place, placeWebsite, description }) {
+export default function SpectacleDate({ datetime, placeName, placeUrl, description }) {
     const { spectacleDate,
       spectacleDate__currentDate,
       spectacleDate__link,
@@ -9,22 +9,25 @@ export default function SpectacleDate({ date, show, showUrl, place, placeWebsite
       spectacleDate__place,
       spectacleDate__description,
  } = styles;
+ 
+ const date = new Date(datetime).toLocaleDateString();
+ 
   return (
     <div className={spectacleDate}>
       <p className={spectacleDate__currentDate}>
         {date}
       </p>
-      <Link href={showUrl}>
+      <Link href={placeUrl}>
         <a className={`${spectacleDate__link} ${spectacleDate__show}`}>
-          {show}
+          VIOLENTES
         </a>
       </Link>
       à 
-      <span className={spectacleDate__place}>{place}</span>
+      <span className={spectacleDate__place}>{placeName}</span>
       <div className={spectacleDate__description}>
-        <Link href={placeWebsite}>
+        <Link href={placeUrl}>
           <a className={spectacleDate__link}>
-            {description}
+            {description !== undefined ? description : 'TEST'}
           </a>
         </Link>
       </div >
