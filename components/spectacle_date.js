@@ -27,7 +27,7 @@ export default function SpectacleDate({ datetime, placeName, placeUrl, descripti
       <div className={spectacleDate__description}>
         <Link href={placeUrl}>
           <a className={spectacleDate__link}>
-            {description !== undefined ? description : 'TEST'}
+            {description !== undefined ? description : 'Lien vers la salle pour réserver les tickets'}
           </a>
         </Link>
       </div >

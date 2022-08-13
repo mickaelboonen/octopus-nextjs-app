@@ -10,23 +10,16 @@ const playMiddleware = (store) => (next) => (action) => {
         })
       break;
     case 'play/fetchPlayByName':
-      
       const { play: { currentPlayName } } = store.getState();
       const values = [currentPlayName, action.payload]
       const value = values.find((v) => v !== undefined && v !== '');
-      
-          api.get(`/api/play/${value}`)
-            .then((response) => {
-              store.dispatch(savePlay(response.data));
-            })
-            .catch((error) => {
-              console.error('village roles request', error);
-            });
-
-
-
-
-
+      api.get(`/api/play/${value}`)
+        .then((response) => {
+          store.dispatch(savePlay(response.data));
+        })
+        .catch((error) => {
+          console.error('village roles request', error);
+        });
       break;
     default:
   }

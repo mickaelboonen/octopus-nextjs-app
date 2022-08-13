@@ -1,71 +1,36 @@
-import Head from 'next/head'
-import Layout from '../../components/layout'
-import SpectacleDate from '../../components/spectacle_date';
+import Head from 'next/head';
+import { useEffect } from 'react';
+import Layout from '../../components/layout';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Import Components
 import PageTitle from '../../components/page_title';
 import PageSubtitle from '../../components/page_subtitle';
-import collect from 'collect.js';
+import SpectacleDate from '../../components/spectacle_date';
 
-import { galeryArray } from '../../data/galerie';
-
+// Import Styles
 import styles from './agenda.module.scss';
-import { useEffect, useState } from 'react';
 
-
-
+// Import Actions
 import { fetchAllDates, toggleSortingButton, sortArray } from '../../app/reducer/date'
-import { useDispatch, useSelector } from 'react-redux'
 
 export default function Galerie() {
-  const dispatch = useDispatch();
-  const { shows, spectacles, currentButton, yearsArray } = useSelector((state) => state.date);
-  const {
-    agenda, 
-    agenda__dates,
-    agenda__dates__buttons,
-    agenda__data,
-    agenda__data__title,
 
+  const dispatch = useDispatch();
+  const {
+    shows,
+    currentButton,
+    yearsArray
+  } = useSelector((state) => state.date);
+
+  const {
+    agenda,
+    agenda__data,
+    agenda__dates,
+    agenda__data__title,
+    agenda__dates__buttons,
   } = styles;
  
-
-  /**
-   * Returns an array of the spectacles years, sorted by desc
-   * @param {array} spectacles 
-   * @returns array
-   */
-  const setYearsArray = (spectacles) => {
-      const yearsArray = []
-      spectacles.forEach((spec) => {
-        if (yearsArray.indexOf(spec.year) === -1) {
-          yearsArray.push(spec.year);
-        }
-      })
-
-      const collection = collect(yearsArray);
-      const sortedYearsArray = collection.sortByDesc('year');
-      return sortedYearsArray.all();
-  }
-
-  // const yearsArray = setYearsArray(spectacles)
-
-  /**
-   * Adds the timestamp property to all spoectacles and returns an array sorted desc by timestamp
-   * @param array
-   * @returns array
-   */
-  // const addTimestampToSpectacles = (array) => {
-  //   const newArray = array.map((spec) => {
-  //     const newObject = {...spec};
-  //     const date = new Date(spec.date).getTime();
-  //     newObject.timestamp = date;
-  //     return newObject;
-  //   })
-
-  //   const collection = collect(newArray);
-  //   const sorted = collection.sortByDesc('timestamp')
-  //   return sorted.all();
-  // }
-
   /**
    * Handles the click on the sorting buttons and allows the display of the new array
    * Sets a new state for the spectacles array and the sorting buttons
@@ -75,22 +40,10 @@ export default function Galerie() {
     dispatch(sortArray(event.target.value));
     dispatch(toggleSortingButton(event.target.value));
   }
-
-  // States
-  // const [spectaclesYears, setSpectaclesYears] = useState(yearsArray);
-  const [spectaclesArray, setSpectaclesArray] = useState(shows);
-  // const [spectaclesArray, setSpectaclesArray] = useState(shows);
-
-
-// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
   useEffect(() => {
     dispatch(fetchAllDates());
   }, [])
-
-
-  const date = new Date(shows[0].datetime); // getDate, getMonth, getYear, getHours
-console.log(shows);
-
 
   return (
     <Layout>
@@ -125,12 +78,10 @@ console.log(shows);
         </div>
         {yearsArray.map((currentYear) => (
           <div key={currentYear} className={agenda__data}>
-            <h3 className={agenda__data__title}>{currentYear}</h3>
+            {shows.find((show) => new Date(show.datetime).getFullYear() === currentYear) !== undefined && <h3 className={agenda__data__title}>{currentYear}</h3>}
             {shows.map((spec) => {
               const year = new Date(spec.datetime).getFullYear();
-              console.log(spec);
-              // if (spec.year === Number(currentYear)) {
-              if (year === Number(currentYear)) {
+              if (year === currentYear) {
                 return (
                   <SpectacleDate {...spec} key={spec.id} />
                 );
