@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { fetchPhotos } from '../../app/reducer/galerie';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Import Images
@@ -19,7 +18,7 @@ import styles from './galerie.module.scss';
 import layoutStyles from '../../components/layout.module.scss';
 
 // Import Actions
-import { displayPicture, setNextPhoto,leaveShowroom } from '../../app/reducer/galerie';
+import { fetchPhotos, displayPicture, setNextPhoto,leaveShowroom } from '../../app/reducer/galerie';
 
 export default function Galerie() {
   const {

@@ -6,7 +6,17 @@ import PageTitle from '../../components/page_title';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+// Import Actions
+import { registerEmail, setNextPhoto,leaveShowroom } from '../../app/reducer/app';
+
 export default function Newsletter() {
+  const {
+    errorMessage,
+    successMessage
+  } = useSelector((state) => state.app);
+  const dispatch = useDispatch();
   const {
     newsletter,
     newsletter__form,
@@ -14,6 +24,9 @@ export default function Newsletter() {
     newsletter__form__button,
     newsletter__disclaimer,
     newsletter__error,
+    newsletter__response,
+    newsletter__response__error,
+    newsletter__response__success,
   } = styles;
   const {
     register,
@@ -23,7 +36,7 @@ export default function Newsletter() {
     },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(registerEmail(data));
   };
   return (
     <Layout>
@@ -52,6 +65,16 @@ export default function Newsletter() {
         </form>
         {errors.email && <p className={newsletter__error}>{errors.email.message}</p>}
       </div>
+      {(errorMessage !== '' || successMessage !== '') && (
+        <div className={newsletter__response}>
+          {successMessage !== '' && (
+            <p className={newsletter__response__success}>{successMessage}</p>
+          )}
+          {errorMessage !== '' && (
+            <p className={newsletter__response__error}>{errorMessage}</p>
+          )}
+        </div>
+      )}
     </Layout>
   )
 }
