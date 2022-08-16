@@ -16,14 +16,24 @@ const messageSlice = createSlice({
           state.errorMessage = action.payload.data;
           state.successMessage = '';
         }
+        else if (action.payload.status !== 201) {
+          state.errorMessage = action.payload.data;
+          state.successMessage = '';
+        }
         else {
           state.successMessage = action.payload.data;
           state.errorMessage = '';
         }
       },
+      unsubscribe: () => {
+
+      },
+      getId: () => {
+
+      },
     },
 });
 
-export const { registerEmail, showRegisterationResponse } = messageSlice.actions;
+export const { registerEmail, showRegisterationResponse, unsubscribe, getId } = messageSlice.actions;
 
 export default messageSlice.reducer;

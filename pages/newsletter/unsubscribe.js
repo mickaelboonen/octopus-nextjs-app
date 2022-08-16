@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Import Actions
-import { registerEmail, unsubscribe } from '../../app/reducer/app';
+import { registerEmail, getId } from '../../app/reducer/app';
 
 export default function Newsletter() {
   const {
@@ -35,15 +35,13 @@ export default function Newsletter() {
     },
   } = useForm();
   const onSubmit = (data) => {
-    dispatch(registerEmail(data));
+    console.log('ID');
+    dispatch(getId(data));
   };
-  const handleClick = () => {
-    dispatch(unsubscribe());
-  }
   return (
     <Layout>
       <Head>
-        <title>S'abonner à la Newsletter</title>
+        <title>Se désinscrire de la Newsletter</title>
       </Head>
       <PageTitle>
         Newsletter
@@ -63,7 +61,7 @@ export default function Newsletter() {
               },
             })}
           />
-          <button className={newsletter__form__button} type="submit">S'abonner à la Newsletter</button>
+          <button className={newsletter__form__button} type="submit">Se désabonner à la Newsletter</button>
         </form>
         {errors.email && <p className={newsletter__error}>{errors.email.message}</p>}
       </div>
@@ -77,7 +75,6 @@ export default function Newsletter() {
           )}
         </div>
       )}
-      <a href="/newsletter/se-désinscrire">Se désabonner de la newsletter</a>
     </Layout>
   )
 }
