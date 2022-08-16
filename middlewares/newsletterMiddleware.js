@@ -1,4 +1,4 @@
-import { showRegisterationResponse, unsubscribe  } from '../app/reducer/app';
+import { showNewsletterApiResponse, unsubscribe  } from '../app/reducer/app';
 import api from './api';
 
 const newsletterMiddleware = (store) => (next) => (action) => {
@@ -6,10 +6,10 @@ const newsletterMiddleware = (store) => (next) => (action) => {
     case 'app/registerEmail':
       api.post(`/api/newsletter/subscribe`, {email: action.payload.email} )
         .then((response) => {
-          store.dispatch(showRegisterationResponse(response))
+          store.dispatch(showNewsletterApiResponse(response))
         })
         .catch((error) => {
-          store.dispatch(showRegisterationResponse(error.response))
+          store.dispatch(showNewsletterApiResponse(error.response))
         });
       
       break;
@@ -19,20 +19,17 @@ const newsletterMiddleware = (store) => (next) => (action) => {
           store.dispatch(unsubscribe(response.data[0].id))
         })
         .catch((error) => {
-          // store.dispatch(showRegisterationResponse(error.response))
+          store.dispatch(showNewsletterApiResponse(error.response))
         });
       
       break;
     case 'app/unsubscribe':
-      console.log(action.payload);
       api.delete(`/api/newsletter/unsubscribe/${action.payload}`)
         .then((response) => {
-          console.log(response);
-          // store.dispatch(showRegisterationResponse(response))
+          store.dispatch(showNewsletterApiResponse(response))
         })
         .catch((error) => {
-          console.error(error);
-          // store.dispatch(showRegisterationResponse(error.response))
+          store.dispatch(showNewsletterApiResponse(error.response))
         });
       
       break;

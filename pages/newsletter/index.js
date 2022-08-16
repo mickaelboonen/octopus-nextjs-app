@@ -9,13 +9,18 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Import Actions
 import { registerEmail, unsubscribe } from '../../app/reducer/app';
+import NewsletterResponse from '../../components/NewsletterResponse';
 
 export default function Newsletter() {
+
+  // State variables
   const {
     errorMessage,
     successMessage
   } = useSelector((state) => state.app);
   const dispatch = useDispatch();
+
+  // Styles classnames
   const {
     newsletter,
     newsletter__form,
@@ -23,10 +28,10 @@ export default function Newsletter() {
     newsletter__form__button,
     newsletter__disclaimer,
     newsletter__error,
-    newsletter__response,
-    newsletter__response__error,
-    newsletter__response__success,
+    newsletter__unsubscribe,
   } = styles;
+
+  // React Hook Form variables
   const {
     register,
     handleSubmit,
@@ -34,12 +39,11 @@ export default function Newsletter() {
       errors,
     },
   } = useForm();
+
+  // On form submit, registers the email into the database
   const onSubmit = (data) => {
     dispatch(registerEmail(data));
   };
-  const handleClick = () => {
-    dispatch(unsubscribe());
-  }
   return (
     <Layout>
       <Head>
@@ -56,7 +60,7 @@ export default function Newsletter() {
             placeholder="Email"
             className={newsletter__form__input}
             {...register('email', {
-              required: "Il nous faut un email ici.",
+              required: "Merci de renseigner un email valide.",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 message: "L'adresse e-mail indiquée n'est pas valide.",
@@ -68,16 +72,15 @@ export default function Newsletter() {
         {errors.email && <p className={newsletter__error}>{errors.email.message}</p>}
       </div>
       {(errorMessage !== '' || successMessage !== '') && (
-        <div className={newsletter__response}>
-          {successMessage !== '' && (
-            <p className={newsletter__response__success}>{successMessage}</p>
-          )}
-          {errorMessage !== '' && (
-            <p className={newsletter__response__error}>{errorMessage}</p>
-          )}
-        </div>
+        <NewsletterResponse success={successMessage} error={errorMessage} />
       )}
-      <a href="/newsletter/se-désinscrire">Se désabonner de la newsletter</a>
+      <div className={newsletter__unsubscribe}>
+        <Link href="/newsletter/unsubscribe">
+          <a>
+            Se désabonner de la newsletter
+          </a>
+        </Link>
+      </div>
     </Layout>
   )
 }

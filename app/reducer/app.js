@@ -9,12 +9,12 @@ const messageSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-      registerEmail: (state, action) => {
+      registerEmail: () => {
       },
-      showRegisterationResponse: (state, action) => {
-        if (action.payload.status !== 201) {
-          state.errorMessage = action.payload.data;
-          state.successMessage = '';
+      showNewsletterApiResponse: (state, action) => {
+        if (action.payload.status === 200) {
+          state.errorMessage = '';
+          state.successMessage = action.payload.data;
         }
         else if (action.payload.status !== 201) {
           state.errorMessage = action.payload.data;
@@ -34,6 +34,6 @@ const messageSlice = createSlice({
     },
 });
 
-export const { registerEmail, showRegisterationResponse, unsubscribe, getId } = messageSlice.actions;
+export const { registerEmail, showNewsletterApiResponse, unsubscribe, getId } = messageSlice.actions;
 
 export default messageSlice.reducer;

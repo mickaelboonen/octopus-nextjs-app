@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import Layout from '../../components/layout'
 import styles from './news.module.scss';
 import PageTitle from '../../components/page_title';
@@ -8,7 +7,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Import Actions
-import { registerEmail, getId } from '../../app/reducer/app';
+import { getId } from '../../app/reducer/app';
+import NewsletterResponse from '../../components/NewsletterResponse';
 
 export default function Newsletter() {
   const {
@@ -23,9 +23,6 @@ export default function Newsletter() {
     newsletter__form__button,
     newsletter__disclaimer,
     newsletter__error,
-    newsletter__response,
-    newsletter__response__error,
-    newsletter__response__success,
   } = styles;
   const {
     register,
@@ -34,8 +31,10 @@ export default function Newsletter() {
       errors,
     },
   } = useForm();
+
+  // On submit of the form, fetches the id of the given email
+  // If there's a match, it will delete the email from the database
   const onSubmit = (data) => {
-    console.log('ID');
     dispatch(getId(data));
   };
   return (
@@ -61,19 +60,12 @@ export default function Newsletter() {
               },
             })}
           />
-          <button className={newsletter__form__button} type="submit">Se désabonner à la Newsletter</button>
+          <button className={newsletter__form__button} type="submit">Se désabonner de la Newsletter</button>
         </form>
         {errors.email && <p className={newsletter__error}>{errors.email.message}</p>}
       </div>
       {(errorMessage !== '' || successMessage !== '') && (
-        <div className={newsletter__response}>
-          {successMessage !== '' && (
-            <p className={newsletter__response__success}>{successMessage}</p>
-          )}
-          {errorMessage !== '' && (
-            <p className={newsletter__response__error}>{errorMessage}</p>
-          )}
-        </div>
+        <NewsletterResponse success={successMessage} error={errorMessage} />
       )}
     </Layout>
   )

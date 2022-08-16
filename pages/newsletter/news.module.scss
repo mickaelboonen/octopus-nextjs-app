@@ -92,6 +92,23 @@ $dark-pink-border: 1px solid #651011;
     }
   }
 
+  &__unsubscribe {
+    text-align: center;
+    padding: 1rem;
+    font-style: italic;
+    letter-spacing: 2px;
+
+    & a {
+      color: #086766;
+
+      &:hover {
+        text-decoration: underline;
+        font-size: 1.1em;
+      }
+    }
+    
+  }
+
 
 }
 @media (min-width: 700px) {  
