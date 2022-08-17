@@ -1,0 +1,27 @@
+.form__row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    &-input,
+    &-textarea  {
+        color: #000;
+        padding: 0.5rem;
+        margin-top: 0.2rem;
+        font-family: 'Arial';
+    }
+
+    &-label {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8em;
+        color: #086766;
+    }
+
+    &-error {
+        margin-top: 0.2rem;
+        color: #d73a3b;
+        // opacity :0.75;
+        font-style: italic;
+    }
+}

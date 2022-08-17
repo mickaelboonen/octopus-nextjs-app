@@ -1,0 +1,29 @@
+$light-pink-border: 1px solid #dd9ea9;
+$dark-pink-border: 1px solid #651011;
+
+
+// BUTTONS
+@mixin button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #d73a3b;
+    color: #b6c6c7;
+    border-left: $light-pink-border;
+    border-top: $light-pink-border;
+    border-right: $dark-pink-border;
+    border-bottom: $dark-pink-border;
+    margin-left: 0.1rem;
+    height: 100%;
+    // border-radius: 0 25px 25px 0 ;
+    opacity: 0.75;
+    text-shadow: 1px 1px 1px #000;
+  }
+  @mixin button-focus {
+    background-color: #d73a3b;
+    border-right: $light-pink-border;
+    border-bottom: $light-pink-border;
+    border-left: $dark-pink-border;
+    border-top: $dark-pink-border;
+    color: #000;
+    text-shadow: 1px 1px 1px #b6c6c7;
+    }

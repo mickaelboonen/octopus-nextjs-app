@@ -1,15 +1,18 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Layout from '../../components/layout'
-import styles from './news.module.scss';
-import PageTitle from '../../components/page_title';
+import Head from 'next/head';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-
 import { useDispatch, useSelector } from 'react-redux';
+
+// Import Components
+import Layout from '../../components/layout';
+import PageTitle from '../../components/page_title';
+import NewsletterResponse from '../../components/NewsletterResponse';
+
+// Import Styles
+import styles from './news.module.scss';
 
 // Import Actions
 import { registerEmail, unsubscribe } from '../../app/reducer/app';
-import NewsletterResponse from '../../components/NewsletterResponse';
 
 export default function Newsletter() {
 

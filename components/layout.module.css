@@ -285,7 +285,6 @@
   margin: 1rem auto;
   font-family: inherit;
   opacity: 0.75;
-  letter-spacing: 1rem;
 }
 
 .pages__titles__main span:first-child {
@@ -306,6 +305,7 @@
 @media (min-width: 600px) {
   .pages__titles__main {
     font-size: 5em;
+    letter-spacing: 0.5rem;
   } 
   .pages__titles__subtitle {
     font-size: 2em;
@@ -315,5 +315,6 @@
 @media (min-width: 800px) {
   .pages__titles__main {
     font-size: 6em;
+    letter-spacing: 1rem;
   } 
 } 
