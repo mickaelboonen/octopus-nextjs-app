@@ -9,8 +9,7 @@ const messageSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-      registerEmail: () => {
-      },
+      registerEmail: () => {},
       showNewsletterApiResponse: (state, action) => {
         if (action.payload.status === 200) {
           state.errorMessage = '';
@@ -25,12 +24,8 @@ const messageSlice = createSlice({
           state.errorMessage = '';
         }
       },
-      unsubscribe: () => {
-
-      },
-      getId: () => {
-
-      },
+      unsubscribe: () => {},
+      getId: () => {},
     },
 });
 

@@ -2,22 +2,37 @@
 @use '../../styles/vars.module';
 
 .contact {
-    // overflow: auto;
-    margin-top: 10vh;
-    width: 80%;
-    margin: auto;
+  // overflow: auto;
+  margin-top: 10vh;
+  width: 80%;
+  margin: auto;
 
-    &__form {
-        border: 1px solid #000;
+  &__form {
+    border: 1px solid #000;
 
-        &__button{
-            @include vars.button;
-    
-            &:focus{
-                @include vars.button-focus;
-            }
-          }
+    &__button{
+      @include vars.button;
+
+      &:focus{
+        @include vars.button-focus;
+      }
     }
+  }
+
+  &__response {
+    color: blue;
+      text-align: center;
+      padding: 1rem;
+      line-height: 1.5;
+
+    &--error {
+      color: #d73a3b;
+    }
+
+    &--success {
+      color: #086766;
+    }
+  }
 } 
 
 @media (min-width: 600px) {
