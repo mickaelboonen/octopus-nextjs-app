@@ -46,7 +46,7 @@ const initialState = {
         },
       ],
     textareaSettings: {
-      name: 'ticket',
+      name: 'content',
       label: "Votre Demande :",
       placeholder: "Votre Demande",
       required: {
@@ -68,11 +68,12 @@ const contactSlice = createSlice({
       createTicket: () => {
       },
       showTicketCreationResponse: (state, action) => {
-        if (action.payload.status === 404 ) {
+        const { status } = action.payload;
+        if (status === 404 || status === 500) {
             state.responseMessage = 'Foiré';
             state.responseClass = 'contact__response--error';
           }
-        else if (action.payload.status === 201) {
+        else if (status === 201) {
         state.responseMessage = 'Réussi';
         state.responseClass = 'contact__response--success';
         }

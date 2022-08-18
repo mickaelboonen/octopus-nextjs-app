@@ -56,11 +56,13 @@ export default function Spectacles() {
         <title>Le Spectacle</title>
       </Head>
       {currentPlay !== null && (
+        <PageTitle>
+          {currentPlay.name}
+        </PageTitle>
+      )}
+      {currentPlay !== null && (
         <div className={spectacle} id={currentPlay.name}>
           <div className={spectacle__container}>
-            <PageTitle>
-              {currentPlay.name}
-            </PageTitle>
             <div className={spectacle__container__banner}>
               <img src={violentes.src} alt="" />
               <p>Crédits : XXX</p>

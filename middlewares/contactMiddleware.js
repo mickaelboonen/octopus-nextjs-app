@@ -4,7 +4,7 @@ import api from './api';
 const contactMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case 'contact/createTicket':
-      api.post('/api/ticket/create')
+      api.post('/api/ticket/create', action.payload)
         .then((response) => {
             store.dispatch(showTicketCreationResponse(response))
             

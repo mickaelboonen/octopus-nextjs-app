@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -45,21 +44,17 @@ export default function Spectacles() {
       <Head>
         <title>Les Spectacles</title>
       </Head>
+      <PageTitle>
+        Spectacles
+      </PageTitle>
       <div className={spectacles}>
-        <PageTitle>
-          Spectacles
-        </PageTitle>
         <div className={spectacles__pictures}>
           {plays.map((spec) => (
-            // <Link href={`/spectacles/${spec.name}`}>
-            //   <a>
-                <div onClick={handleClick} className={spectacles__pictures__container} id={spec.name} style={{'backgroundImage': `url(${lavender.src})`}}>
-                  <div className={spectacles__pictures__container__name}>
-                    {spec.name}
-                  </div>
-                </div>
-            //   </a>
-            // </Link>
+            <div onClick={handleClick} className={spectacles__pictures__container} id={spec.name} style={{'backgroundImage': `url(${lavender.src})`}}>
+              <div className={spectacles__pictures__container__name}>
+                {spec.name}
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -11,14 +11,17 @@ $dark-blue-border: 1px solid #0b3c44;
     margin: auto;
     font-family: Archive, sans-serif;
     font-size: 0.8em;
+    display: flex;
+    align-items: center;
 
     & a {
       color: #b6c6c7;
     }
 
     &__nav {
-      max-width: 80vw;
-      padding: 1rem;
+      width: 80vw;
+      margin: auto;
+      // padding: 0.5rem;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -31,7 +34,7 @@ $dark-blue-border: 1px solid #0b3c44;
   .footer {
     &__nav {
       max-width: 80vw;
-      padding: 1rem;
+      // padding: 1rem;
       margin: auto;
       display: flex;
       flex-direction: row;

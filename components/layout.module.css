@@ -281,7 +281,7 @@
 .pages__titles__main {
   color: #d73a3b ;
   text-align: center;
-  font-size: 4em;
+  font-size: 3em;
   margin: 1rem auto;
   font-family: inherit;
   opacity: 0.75;
@@ -300,7 +300,7 @@
   display: flex;
   justify-content: center;
 }
-
+ 
 
 @media (min-width: 600px) {
   .pages__titles__main {

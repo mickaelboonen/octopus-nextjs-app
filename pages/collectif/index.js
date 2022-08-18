@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../../components/layout'
 import Tab from '../../components/tab';
 import PageTitle from '../../components/page_title';
-import TeamMember from '../../components/team_member';
+import TeamMember from '../../components/TeamMember/team_member';
+import FocusMember from '../../components/TeamMember/focusMember';
 
 // Styles
 import styles from './collectif.module.scss';
@@ -98,7 +99,6 @@ export default function Collectif() {
     else {
       dispatch(getFormerArtists());
     }
-    
   }
   return (
     <Layout>
@@ -125,13 +125,13 @@ export default function Collectif() {
                   </p>
                 </div>
               )}
-              {memberToDisplay !== null && <TeamMember member={memberToDisplay} />}
+              {memberToDisplay !== null && <FocusMember {...memberToDisplay} />}
             </div>
             <div className={collectif__team__list} id="members-list">
               {artists.map((member) => (
                 <TeamMember key={member.id} {...member} handler={handleClick} />
               ))}
-              <div className={compStyles.teammember} style={{'backgroundImage': `url()`}} onClick={handleClickOnSeeFormerMembers}>
+              <div className={compStyles.teammember} onClick={handleClickOnSeeFormerMembers}>
                   <span>{!isFormer ? 'Voir les anciens membres...' : 'Voir les membres actuels'}</span>
               </div>
             </div>

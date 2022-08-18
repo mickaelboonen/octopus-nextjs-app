@@ -116,10 +116,10 @@ export default function Galerie() {
       <Head>
         <title>Galerie des Pieuvres</title>
       </Head>
+      <PageTitle>
+        Galerie
+      </PageTitle>
       <div className={galerie} id="galerie_container">
-        <PageTitle>
-          Galerie
-        </PageTitle>
         <Tab classStyle={galerie__tabs} tabs={spectacles}  tabFunction={setNewPhotosArray} />
         <div className={galerie__images}>
           {photosArray.map((photo) => <Picture {...photo} handler={handleClickOnPicture} /> )}

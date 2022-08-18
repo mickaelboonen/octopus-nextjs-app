@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,7 +8,6 @@ import PageTitle from '../../components/page_title';
 
 // Import Styles
 import styles from './contact.module.scss';
-import formStyles from '../../components/Form/form.module.scss';
 
 // Import Actions
 import { createTicket } from '../../app/reducer/contact';
@@ -33,10 +31,6 @@ export default function Galerie() {
     contact,
     contact__form__button
   } = styles;
-  console.log(styles);
-  
-
-
 
   // React Hook Form variables
   const {
@@ -47,12 +41,10 @@ export default function Galerie() {
     },
   } = useForm();
 
-
   // On form submit, 
   const onSubmit = (data) => {
     dispatch(createTicket(data));
   };
-
   
   return (
     <Layout>
