@@ -111,6 +111,7 @@ export default function Galerie() {
     galerieContainer.classList.remove(galerie__blurred);
   }
   
+  
   return (
     <Layout>
       <Head>
@@ -122,7 +123,7 @@ export default function Galerie() {
       <div className={galerie} id="galerie_container">
         <Tab classStyle={galerie__tabs} tabs={spectacles}  tabFunction={setNewPhotosArray} />
         <div className={galerie__images}>
-          {photosArray.map((photo) => <Picture {...photo} handler={handleClickOnPicture} /> )}
+          {photosArray.map((photo) => <Picture key={photo.id} {...photo} handler={handleClickOnPicture} /> )}
         </div> 
       </div>
       {photoToDisplay !== null && (
@@ -131,7 +132,7 @@ export default function Galerie() {
             <img src={chevronLeft.src} alt="" />
           </div>
           <div className={showroom__picture}>
-              <img src={`http://localhost:8000/${photoToDisplay.url}`} alt="" />
+              <img src={`http://localhost:8000/${photoToDisplay.url}`} alt=""/>
               <img src={X.src} alt="" className={showroom__picture__cross} onClick={handleClickOnCross}/>
           </div>
           <div className={showroom__arrows} id="right" onClick={handleClickOnChevron}>

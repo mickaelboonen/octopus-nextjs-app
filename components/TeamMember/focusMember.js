@@ -1,16 +1,16 @@
-import lavender from '../../public/images/portraits/fanny.jpg';
-import styles from '../layout.module.scss';
+import styles from './_member.module.scss';
 import classes from '../../utils/classnames';
 
-export default function focusMember({ name, pronouns, id, image, theaterRoles }) {
-  console.log(image);
+console.log(styles);
+
+export default function focusMember({ name, pronouns, id, image, description, theaterRoles }) {
   return (
     <div className={classes(styles, 'focus-member')} id={id}>
       <img className={classes(styles, 'focus-member__image')} src={image} alt="" />
       <div className={classes(styles, 'focus-member__data')}>
-        <p>{name}</p>
-        <p>{pronouns}</p>
-        <p>{theaterRoles.map((role) => role + ', ')}</p>
+        <p><span className={classes(styles, 'focus-member__data-name')}>{name}</span> ( <span className={classes(styles, 'focus-member__data-pronouns')}>{pronouns}</span> )</p>
+        <p className={classes(styles, 'focus-member__data-roles')}>{theaterRoles.map((role) => role + ', ')}</p>
+        <p className={classes(styles, 'focus-member__data-description')}>{description}</p>
       </div>
     </div>
   )

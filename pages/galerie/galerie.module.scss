@@ -2,7 +2,7 @@
     height: 100%;
     overflow: auto;
     margin-top: 10vh;
-    width: 50%;
+    width: 90%;
     margin: auto;
     font-family: Archive, sans-serif;
 
@@ -79,6 +79,90 @@
   }
 }
 
+
+@media (min-width: 800px) {
+  .galerie {
+    height: 100%;
+    overflow: auto;
+    margin-top: 10vh;
+    width: 50%;
+    margin: auto;
+    font-family: Archive, sans-serif;
+
+    &__blurred {
+      filter: blur(10px);
+    }
+
+    &__tabs {
+      display: flex;
+      color: #b6c6c7 ;
+    }
+
+    &__titles {
+
+      &__main {
+        color: #ba4a5c ;
+        text-align: center;
+        font-size: 6em;
+        margin: 1rem auto;
+        font-family: inherit;
+      }
+    }
+
+    
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto;
+  
+    &__photo {
+      flex-grow: 1;
+      width: 15rem;
+      height: 15rem;
+      background-size: cover;
+      background-position: center; 
+      transition: 0.5s;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+  
+      &:last-child {
+        margin-right: 0;
+      }
+      
+      &:nth-of-type(3n+3) {
+        margin-right: 0;
+      }
+      
+      &:hover {
+        flex-grow: 3;
+      }
+
+      &:hover .galerie__images__photo__credit {
+        opacity: 1;
+      }
+
+      &__credit {
+        position: absolute;
+        bottom: 0;
+        height: 40%;
+        width: 100%;
+        background: rgb(26,26,26);
+        background: linear-gradient(180deg, rgba(26,26,26,0) 0%, rgba(4,4,4,1) 100%);
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        transition: 0.5s;
+      }
+
+    }
+  }
+}
+}
+
 .showroom {
   position: fixed;
   inset: 10vh 0 0 0;
@@ -105,7 +189,7 @@
 
   &__picture {
     width: 70%;
-    height: 100%;
+    height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,9 +197,11 @@
 
     &__cross {
       position: absolute;
-      top: 0;
-      right: 10px;
-      width: 5rem;
+      top: -1rem;
+      right: 0;
+      width: 2rem;
+      background-color: #d73a3b;
+      border-radius: 50%;
 
     }
 
@@ -125,3 +211,26 @@
     }
   }
 }
+
+
+@media (min-width: 800px) {
+  .showroom {
+
+  &__picture {
+    height: 100%;
+
+    &__cross {
+      position: absolute;
+      top: 0;
+      width: 5rem;
+      background-color: #d73a3b;
+      border-radius: 50%;
+
+    }
+
+    & img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+  }
+}}
