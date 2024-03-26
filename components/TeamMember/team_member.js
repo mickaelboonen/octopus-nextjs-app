@@ -5,6 +5,7 @@ export default function TeamMember({ name, pronouns, id, image, theaterRoles,  h
     teammember,
     teammember__info,
     } = compStyles;
+    console.log(name, image);
   return (
     <div className={teammember} style={{'backgroundImage': `url(${image}`}} onClick={handler} id={id}>
       <div className={teammember__info}>

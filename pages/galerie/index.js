@@ -38,6 +38,7 @@ export default function Galerie() {
     photoToDisplay
   } = useSelector((state) => state.galerie);
   const dispatch = useDispatch();
+  console.log(photosArray);
   
   /**
    * Adds and removes the tab__active classname to the different tabs

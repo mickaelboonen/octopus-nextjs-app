@@ -40,7 +40,7 @@ export default function Collectif() {
     isFormer,
     currentTab,
   } = useSelector((state) => state.team);
-
+console.log(artists);
   // Dispatch to be used when we need to dispatch the actions
   const dispatch = useDispatch();
   
